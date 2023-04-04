@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CRUD</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+  </head>
+  <body>
+      
+        <form id="formulario">
+
+          <input type="hidden" id="aluno-id" name="alunoId">
+
+          <label for="name">Nome</label>
+          <input id="nome" type="text" name="nome" required />
+
+
+          <label for="cpf">Cpf</label>
+          <input id="cpf" type="number" name ="cpf" required />
+            
+            
+          <label for="Plan">ESCOLHA UM PLANO:</label>
+          <select id="plano" type="text" name ="plano" required >
+          <option value="Musculação mensal">Musculação mensal</option>
+              <option value="Musculação semestral">Musculação semestral</option>
+              <option value="Musculação anual">Musculação anual</option>
+              <option value="Luta mensal">Luta mensal</option>
+              <option value="Luta semestral">Luta semestral</option>
+              <option value="Luta anual">Luta anual</option>
+              <option value="Crossfit mensal">Crossfit mensal</option>
+              <option value="Crossfit semestral">Crossfit semestral</option>
+              <option value="Crossfit anual">Crossfit anual</option>
+            </select>
+         
+           
+      
+          
+          <button type="submit" id="adicionar">Adicionar</button>
+        </form>
+      
+
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Cpf</th>
+              <th>Plano</th>  
+            </tr>
+          </thead>
+          
+          <tbody id="tabela">
+          </tbody>
+        </table>
+        
+    <script src="script.js"></script>
+  </body>
+</html>
