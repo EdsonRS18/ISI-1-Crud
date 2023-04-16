@@ -11,7 +11,7 @@ const pool = new Pool({
   });
 
 pool.connect()
-pool.query("select *from aluno")
+pool.query("select *from alunos")
 .then(results =>{
   const resultado = results.rows
   console.table(resultado)
@@ -33,7 +33,7 @@ app.post('/alunos',async (req, res) => {
   const { nome, cpf, plano } = req.body;
 
   const newAlun = await pool.query(
-    'INSERT INTO aluno (nome, cpf, plano) VALUES ($1, $2, $3) RETURNING *',
+    'INSERT INTO alunos (nome, cpf, plano) VALUES ($1, $2, $3) RETURNING *',
     [nome, cpf, plano]
     );
     
@@ -41,7 +41,7 @@ app.post('/alunos',async (req, res) => {
     });
   
   app.get('/alunos', async(req, res) => {
-    const alunos = await pool.query('SELECT * FROM aluno');
+    const alunos = await pool.query('SELECT * FROM alunos');
 
     res.status(200).json(alunos.rows);
   });
@@ -49,7 +49,7 @@ app.post('/alunos',async (req, res) => {
   app.get('/alunos/:id', async (req, res) => {
     const { id } = req.params;
     
-    const alun = await pool.query('SELECT * FROM aluno WHERE id = $1', [id]);
+    const alun = await pool.query('SELECT * FROM alunos WHERE id = $1', [id]);
     
     if (alun.rows.length === 0) {
     res.status(404).json({ error: 'aluno não encontrado' });
@@ -63,7 +63,7 @@ app.put('/alunos/:id', async(req, res) => {
   const { nome, cpf, plano} = req.body;
 
   const updatedAluno = await pool.query(
-    'UPDATE aluno SET nome = $1, cpf = $2, plano = $3 WHERE id = $4 RETURNING *',
+    'UPDATE alunos SET nome = $1, cpf = $2, plano = $3 WHERE id = $4 RETURNING *',
     [nome, cpf, plano, id]
     );
     
@@ -79,7 +79,7 @@ app.put('/alunos/:id', async(req, res) => {
 app.delete('/alunos/:id', async (req, res) => {
   const { id } = req.params;
   
-  const deletedAluno = await pool.query('DELETE FROM aluno WHERE id = $1 RETURNING *', [id]);
+  const deletedAluno = await pool.query('DELETE FROM alunos WHERE id = $1 RETURNING *', [id]);
   
   if (deletedAluno.rows.length === 0) {
   res.status(404).json({ error: 'aluno não encontrado' });
